@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fornasmala/pages/kos/detail_kos.dart';
+import 'package:fornasmala/pages/kos/rules_kos.dart';
 
 class KosPage extends StatefulWidget {
   const KosPage({super.key});
@@ -276,15 +277,21 @@ class _KosPageState extends State<KosPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.black26),
-                            borderRadius: BorderRadius.circular(25)),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 3, horizontal: 8),
-                        child: const Text(
-                          'Filter',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                            CupertinoPageRoute(
+                                builder: (context) => const RulesKosPage())),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(width: 1, color: Colors.black26),
+                              borderRadius: BorderRadius.circular(25)),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 3, horizontal: 8),
+                          child: const Text(
+                            'Filter',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       Container(
