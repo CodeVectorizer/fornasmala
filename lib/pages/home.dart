@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fornasmala/pages/campus/list_campus.dart';
+import 'package:fornasmala/pages/kos/kos.dart';
 import 'package:fornasmala/pages/organizer/organizer.dart';
+import 'package:fornasmala/pages/transportation/transportation.dart';
 import 'package:fornasmala/theme.dart';
 
 class Home extends StatefulWidget {
@@ -196,18 +196,23 @@ class _HomeState extends State<Home> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/kos.png',
-                                height: 100,
-                                width: 100,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text('Kos & Kontrakan')
-                            ],
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                    builder: (context) => const KosPage())),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/kos.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text('Kos & Kontrakan')
+                              ],
+                            ),
                           ),
                           Column(
                             children: [
@@ -222,18 +227,24 @@ class _HomeState extends State<Home> {
                               const Text('Food')
                             ],
                           ),
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/transportasi.png',
-                                height: 100,
-                                width: 100,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text('Transportation')
-                            ],
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                    builder: (context) =>
+                                        const TransportationPage())),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/transportasi.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text('Transportation')
+                              ],
+                            ),
                           ),
                         ],
                       ),
