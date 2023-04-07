@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fornasmala/pages/activity/activity.dart';
 import 'package:fornasmala/pages/campus/list_campus.dart';
+import 'package:fornasmala/pages/food/main_food.dart';
 import 'package:fornasmala/pages/kos/kos.dart';
 import 'package:fornasmala/pages/organizer/organizer.dart';
 import 'package:fornasmala/pages/transportation/transportation.dart';
@@ -215,18 +216,24 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                           ),
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/makanan.png',
-                                height: 100,
-                                width: 100,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text('Food')
-                            ],
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                    builder: (context) =>
+                                        const MainFoodPage())),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/makanan.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text('Food')
+                              ],
+                            ),
                           ),
                           GestureDetector(
                             onTap: () => Navigator.of(context).push(
