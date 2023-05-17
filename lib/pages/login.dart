@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fornasmala/pages/main_page.dart';
+import 'package:fornasmala/widgets/login_item.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -22,7 +25,7 @@ class _LoginState extends State<Login> {
               height: 50,
             ),
             Image.asset(
-              'assets/login.png',
+              'assets/images/login.png',
               height: 300,
               width: 300,
             ),
@@ -105,14 +108,18 @@ class _LoginState extends State<Login> {
               children: const [
                 Padding(
                   padding: EdgeInsets.only(right: 40),
-                  child: Text(
-                    textAlign: TextAlign.end,
-                    'forgot password?',
-                    style: TextStyle(
-                      color: Color(0xffcdcdcd),
-                      fontSize: 14,
-                    ),
+                  child: LoginItem(
+                    title: 'Forgot Password',
+                    route: 'forgot',
                   ),
+                  // child: Text(
+                  //   textAlign: TextAlign.end,
+                  //   'forgot password?',
+                  //   style: TextStyle(
+                  //     color: Color(0xffcdcdcd),
+                  //     fontSize: 14,
+                  //   ),
+                  // ),
                 ),
               ],
             ),
@@ -124,7 +131,11 @@ class _LoginState extends State<Login> {
                   backgroundColor: Colors.lightBlue,
                   elevation: 10,
                   foregroundColor: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    CupertinoPageRoute(builder: (context) => const Mainpage()),
+                    (route) => false);
+              },
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 135, vertical: 15),
                 child: Text(

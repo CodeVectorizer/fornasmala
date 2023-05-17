@@ -36,12 +36,12 @@ class _MainFoodPageState extends State<MainFoodPage>
         onPageChanged: (index) {
           setState(() => selectedIndex = index);
         },
-        children: const [HomeFoodPage(), CartFoodPage(), ProfileFoodPage()],
+        children: const [HomeFoodPage()],
       ),
-      bottomNavigationBar: UIBottomBar(
-        indexing: selectedIndex,
-        pageController: _pageController,
-      ),
+      // bottomNavigationBar: UIBottomBar(
+      //   indexing: selectedIndex,
+      //   pageController: _pageController,
+      // ),
     );
   }
 }

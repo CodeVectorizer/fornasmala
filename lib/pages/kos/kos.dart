@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fornasmala/config/CallApi.dart';
+import 'package:fornasmala/models/dorm.dart';
 import 'package:fornasmala/pages/kos/detail_kos.dart';
 import 'package:fornasmala/pages/kos/rules_kos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class KosPage extends StatefulWidget {
   const KosPage({super.key});
@@ -13,8 +18,7 @@ class KosPage extends StatefulWidget {
 class _KosPageState extends State<KosPage> {
   List dKos = [
     {
-      'image':
-          'https://blog.cokro.com/wp-content/uploads/2021/12/1_v2Utx4Ba-XPEvT-xw8GwoA-1.jpeg',
+      'image': 'assets/images/kos.png',
       'name': 'Kos Putra Barokah',
       'city': 'Jember',
       'facility': 'Kamar mandi luar - wifi - dapur',
@@ -28,8 +32,7 @@ class _KosPageState extends State<KosPage> {
           'Untuk info lebih lanjut bisa hubungi nomer dibawah atau bisa klik link whatsapp No telp/whatsapp : 085788307151'
     },
     {
-      'image':
-          'https://blog.cokro.com/wp-content/uploads/2021/12/1_v2Utx4Ba-XPEvT-xw8GwoA-1.jpeg',
+      'image': 'assets/images/kos.png',
       'name': 'Kos Putri Barokah',
       'city': 'Jember',
       'facility': 'Kamar mandi dalam - wifi - dapur',
@@ -43,8 +46,7 @@ class _KosPageState extends State<KosPage> {
           'Untuk info lebih lanjut bisa hubungi nomer dibawah atau bisa klik link whatsapp No telp/whatsapp : 085788307151'
     },
     {
-      'image':
-          'https://blog.cokro.com/wp-content/uploads/2021/12/1_v2Utx4Ba-XPEvT-xw8GwoA-1.jpeg',
+      'image': 'assets/images/kos.png',
       'name': 'Kos Cantik',
       'city': 'Jember',
       'facility': 'Kamar mandi dalam - wifi - dapur',
@@ -58,6 +60,34 @@ class _KosPageState extends State<KosPage> {
           'Untuk info lebih lanjut bisa hubungi nomer dibawah atau bisa klik link whatsapp No telp/whatsapp : 085788307151'
     },
   ];
+
+  var dorms = <Dorm>[];
+  var isLoading = true;
+
+  fetchData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    CallApi().getData('dorms').then((response) {
+      var jsonData = json.decode(response.body);
+      if (jsonData['success']) {
+        Iterable list = jsonData['data'];
+        print(jsonData['data']);
+        setState(() {
+          dorms = list.map((model) => Dorm.fromJson(model)).toList();
+
+          isLoading = false;
+        });
+      } else {
+        print(jsonData['message']);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

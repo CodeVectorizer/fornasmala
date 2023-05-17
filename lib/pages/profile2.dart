@@ -185,11 +185,13 @@ class _Profile2State extends State<Profile2> {
                           iconUrl: 'assets/images/icon_profile.png',
                           title: 'My Profile',
                           isLightMode: isLightMode,
+                          route: 'myprofile',
                         ),
                         ProfileMenuItem(
                           iconUrl: 'assets/images/changepass.png',
                           title: 'Change Password',
                           isLightMode: isLightMode,
+                          route: 'changepassword',
                         ),
                         // ProfileMenuItem(
                         //   iconUrl: 'assets/images/lokasi.png',
@@ -200,6 +202,7 @@ class _Profile2State extends State<Profile2> {
                           iconUrl: 'assets/images/language.png',
                           title: 'Language',
                           isLightMode: isLightMode,
+                          route: 'language',
                         ),
                         // ProfileMenuItem(
                         //   iconUrl: 'assets/images/organisasi.png',
@@ -210,6 +213,7 @@ class _Profile2State extends State<Profile2> {
                           iconUrl: 'assets/images/logout.png',
                           title: 'Logout',
                           isLightMode: isLightMode,
+                          route: 'logout',
                         ),
                       ]),
                     ),

@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fornasmala/config/CallApi.dart';
+import 'package:fornasmala/models/organization.dart';
 import 'package:fornasmala/pages/organizer/detail_item_organizer.dart';
 import 'package:fornasmala/widgets/search_box.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailOrganizer extends StatefulWidget {
   final Map? menus;
@@ -18,6 +23,36 @@ class _DetailOrganizerState extends State<DetailOrganizer> {
     {'name': 'Ikamala Uin Sunan Ampel Surabaya'},
     {'name': 'Forsimala Kediri'},
   ];
+
+  var organizations = <Organization>[];
+  var isLoading = true;
+
+  fetchData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? studentId = preferences.get('student_id').toString();
+
+    CallApi().getData('organizations/').then((response) {
+      var jsonData = json.decode(response.body);
+      if (jsonData['success']) {
+        Iterable list = jsonData['data'];
+        setState(() {
+          organizations =
+              list.map((model) => Organization.fromJson(model)).toList();
+
+          isLoading = false;
+        });
+      } else {
+        print(jsonData['message']);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

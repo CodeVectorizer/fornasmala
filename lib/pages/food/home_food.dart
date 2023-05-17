@@ -219,7 +219,6 @@ class _HomeFoodPageState extends State<HomeFoodPage>
                 TabBar(
                   unselectedLabelColor: Colors.black38,
                   labelColor: Colors.black,
-                  dividerColor: Colors.black,
                   indicator: MyIndicatorTabbar(
                       color: Colors.black, height: 5, radius: 12),
                   // indicatorPadding: const EdgeInsets.symmetric(horizontal: 30),

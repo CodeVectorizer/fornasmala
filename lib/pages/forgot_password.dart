@@ -58,10 +58,40 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.only(top: 20),
                       isDense: true,
-                      hintText: "Email",
+                      hintText: "Password Lama",
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(),
-                        child: Icon(Icons.mail),
+                        child: Icon(Icons.lock),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.only(top: 20),
+                      isDense: true,
+                      hintText: "Password Baru",
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.only(),
+                        child: Icon(Icons.lock),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.only(top: 20),
+                      isDense: true,
+                      hintText: "Konfirmasi Password Baru",
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.only(),
+                        child: Icon(Icons.lock),
                       ),
                     ),
                   ),

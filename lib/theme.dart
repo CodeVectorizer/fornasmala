@@ -11,6 +11,7 @@ Color kRedColor = Color(0xffFF314A);
 Color kYellowColor = Color(0xffFFBA00);
 Color kBlueColor = Color(0xff2972FF);
 Color kDarkBackgroundColor = Color(0xff252836);
+Color kGreySecond = Color(0xffcdcdcd);
 
 TextStyle blackTextStyle = GoogleFonts.nunito(
   color: kBlackColor,
@@ -38,6 +39,9 @@ TextStyle yellowTextStyle = GoogleFonts.nunito(
 );
 TextStyle blueTextStyle = GoogleFonts.nunito(
   color: kBlueColor,
+);
+TextStyle greysTextStyle = GoogleFonts.nunito(
+  color: kGreySecond,
 );
 
 FontWeight light = FontWeight.w300;

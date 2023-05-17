@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fornasmala/config/CallApi.dart';
+import 'package:fornasmala/models/transport.dart';
 import 'package:fornasmala/pages/transportation/detail_transportation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TransportationPage extends StatefulWidget {
   const TransportationPage({super.key});
@@ -12,8 +17,7 @@ class TransportationPage extends StatefulWidget {
 class _TransportationPageState extends State<TransportationPage> {
   List dTrans = [
     {
-      'image':
-          'https://www.toyotamlg.com/ss/pm/toyotamalang_07M1A07aybm232150gfde9b72.jpg',
+      'image': 'assets/images/transportasi.png',
       'name': 'Toyota Grand New Avanza',
       'city': 'Jember',
       'price': '250.000',
@@ -27,8 +31,7 @@ class _TransportationPageState extends State<TransportationPage> {
           'Info lebih lanjut hubungi nomer di bawah atau bisa dengan klik link whatsapp No telp/Whatsapp : 089508492563'
     },
     {
-      'image':
-          'https://img.lacakharga.com/public/images/2022/10/olx_634a148bd87c2809df0ebdb8_0.jpg',
+      'image': 'assets/images/transportasi.png',
       'name': 'Alphard 2015',
       'city': 'Jember',
       'price': '350.000',
@@ -42,8 +45,7 @@ class _TransportationPageState extends State<TransportationPage> {
           'Info lebih lanjut hubungi nomer di bawah atau bisa dengan klik link whatsapp No telp/Whatsapp : 089508492563'
     },
     {
-      'image':
-          'https://media.wired.com/photos/5b86fce8900cb57bbfd1e7ee/master/w_2560%2Cc_limit/Jaguar_I-PACE_S_Indus-Silver_065.jpg',
+      'image': 'assets/images/transportasi.png',
       'name': 'Jaguar i-Pace Electric SUV',
       'city': 'Jember',
       'price': '500.000',
@@ -57,6 +59,34 @@ class _TransportationPageState extends State<TransportationPage> {
           'Info lebih lanjut hubungi nomer di bawah atau bisa dengan klik link whatsapp No telp/Whatsapp : 089508492563'
     },
   ];
+
+  var transports = <Transport>[];
+  var isLoading = true;
+
+  fetchData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    CallApi().getData('transports').then((response) {
+      var jsonData = json.decode(response.body);
+      if (jsonData['success']) {
+        Iterable list = jsonData['data'];
+        print(jsonData['data']);
+        setState(() {
+          transports = list.map((model) => Transport.fromJson(model)).toList();
+
+          isLoading = false;
+        });
+      } else {
+        print(jsonData['message']);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
